@@ -4,17 +4,22 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Scanner;
 
 
 public class NaverTranslation {
 
     public static void main(String[] args) {
 
-        String clientId = "AULXiK7lYaMrVt8ezGM0";//애플리케이션 클라이언트 아이디값";
-        String clientSecret = "Gg80r4O1R5";//애플리케이션 클라이언트 시크릿값";
+        String clientId = "AULXiK7lYaMrVt8ezGM0";
+        String clientSecret = "Gg80r4O1R5";
+
+        System.out.print("Input String :");
+        Scanner in = new Scanner(System.in);
+        String trans = in.nextLine().trim();
 
         try {
-            String text = URLEncoder.encode("만나서 반갑습니다.", "UTF-8");
+            String text = URLEncoder.encode(trans, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/language/translate";
 
             URL url = new URL(apiURL);
@@ -25,7 +30,7 @@ public class NaverTranslation {
             con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
             // post request
 
-            String postParams = "source=ko&target=en&text=" + text;
+            String postParams = "source=ko&target=ja&text=" + text;
 
             con.setDoOutput(true);
 

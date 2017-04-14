@@ -5,6 +5,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by danawacomputer on 2017-04-14.
@@ -17,8 +18,12 @@ public class NaverSearch {
         String developId = "AULXiK7lYaMrVt8ezGM0";
         String developPw = "Gg80r4O1R5";
 
+        System.out.print("Input String :");
+        Scanner in = new Scanner(System.in);
+        String search = in.nextLine().trim();
+
         try {
-            String text = URLEncoder.encode("아스날","UTF-8");
+            String text = URLEncoder.encode(search,"UTF-8");
             String apiUrl = "https://openapi.naver.com/v1/search/blog?query="+ text;
 
             URL url = new URL(apiUrl);
