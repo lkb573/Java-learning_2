@@ -1,30 +1,33 @@
 import org.json.JSONObject;
+import service.NaverApiService;
 
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Scanner;
 
-
-public class JsonTranslationExam {
+public class JsonTranslationAutoExam {
     public static void main(String[] args){
 
-        String clientId = "AULXiK7lYaMrVt8ezGM0";
-        String clientSecret = "Gg80r4O1R5";
 
 
         try {
-
-            BufferedReader br = new BufferedReader(new FileReader("src\\closer.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("src\\closer2.txt"));
 
             String line = "";
+            while ((line = br.readLine()) != null){
 
-            while ((line = br.readLine()) != null) {
-
-                if(line.equals(""))
+                if(line.trim().equals(""))
                     continue;
 
-                try {
+
+                /*NaverApiService trans = new NaverApiService();*/
+
+                String json = NaverApiService.translate("en", "ko",line);
+
+
+                /*try {
                     String text = URLEncoder.encode(line, "UTF-8");
                     String apiURL = "https://openapi.naver.com/v1/language/translate";
 
@@ -36,7 +39,7 @@ public class JsonTranslationExam {
                     con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
                     // post request
 
-                    String postParams = "source=en&target=ko&text=" + text;
+                    String postParams = "source=ko&target=ja&text=" + text;
 
                     con.setDoOutput(true);
 
@@ -60,13 +63,9 @@ public class JsonTranslationExam {
                     while ((inputLine = br2.readLine()) != null) {
                         response.append(inputLine);
                     }
-
                     br2.close();
 
-
-                    String jsonData = response.toString();
-
-                    JSONObject obj = new JSONObject(jsonData);
+                    JSONObject obj = new JSONObject(response.toString());
 
                     String res = obj.getJSONObject("message")
                             .getJSONObject("result")
@@ -74,22 +73,18 @@ public class JsonTranslationExam {
 
                     System.out.println(res);
 
-                } catch (Exception je) {
-                    System.out.println(je);
-                }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }*/
+
 
             }
 
-
-
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException ie) {
-            ie.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
 
 
     }

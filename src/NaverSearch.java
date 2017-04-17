@@ -7,13 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Created by danawacomputer on 2017-04-14.
- */
+
 public class NaverSearch {
     public static void main(String[] args){
-
-
 
         String developId = "AULXiK7lYaMrVt8ezGM0";
         String developPw = "Gg80r4O1R5";
